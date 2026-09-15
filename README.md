@@ -57,3 +57,23 @@ Também foi realizada uma consulta no RIPE Database para obter informações sob
 ![Consulta do IP no RIPE](evidence/evidence-03-ip-ripe-lookup.png)
 
 A consulta atual mostrou que o endereço pertence ao bloco 2.110.0.0 - 2.110.255.255, associado à Dinamarca, e que a rota observada possui origem no ASN AS8999.
+
+## Análise do domínio relacionado ao incidente
+
+Após a análise do IP de envio, foi realizada uma consulta ao domínio `waveonnord.com`, identificado na infraestrutura associado ao incidente.
+
+A primeira verificação foi feita no VirusTotal.
+
+![Consulta do domínio no VirusTotal](evidence/evidence-04-domain-virustotal.png)
+
+A URL associada ao domínio apresentava histórico de submissão desde 2014. Na consulta atual, apenas um mecanismo de segurança apresentou detecção.
+
+Como o incidente analisado ocorreu em 2015, a reputação atual foi utilizada apenas como enriquecimento do indicador e não como prova isolada da atividade maliciosa.
+
+Também foram analisadas as relações do domínio no VirusTotal.
+
+![Relações do domínio no VirusTotal](evidence/evidence-05-domain-relations.png)
+
+O histórico de resolução DNS apresentou o endereço IP `62.149.177.11`, que também aparece associado à infraestrutura documentada para o incidente analisado.
+
+Foram observadas relações com arquivos detectados em anos posteriores. Como essas relações são muito mais recentes que o incidente analisado, elas não foram atribuídas diretamente ao incidente de 2015.
