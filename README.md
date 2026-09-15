@@ -77,3 +77,27 @@ Também foram analisadas as relações do domínio no VirusTotal.
 O histórico de resolução DNS apresentou o endereço IP `62.149.177.11`, que também aparece associado à infraestrutura documentada para o incidente analisado.
 
 Foram observadas relações com arquivos detectados em anos posteriores. Como essas relações são muito mais recentes que o incidente analisado, elas não foram atribuídas diretamente ao incidente de 2015.
+
+## Análise do arquivo malicioso
+
+Após a identificação da infraestrutura utilizada no phishing, foi realizada a análise do arquivo associado ao incidente sem realizar sua execução.
+
+O arquivo `doc255_pdf.exe` foi investigado através de seu hash no VirusTotal.
+
+![Detecção do malware no VirusTotal](evidence/evidence-06-malware-virustotal.png)
+
+Na consulta realizada, o arquivo apresentou detecção 63 de 68 mecanismos de segurança no momento da consulta e foi classificado principalmente como Trojan/Downloader, com referências à família Upatre.
+
+Apesar do nome conter a palavra `pdf`, a análise mostrou que o arquivo era na realidade um executável do Windows.
+
+Também foram consultadas as propriedades do arquivo para coletar seus principais identificadores.
+
+![Detalhes do arquivo malicioso](evidence/evidence-07-malware-file-details.png)
+
+Os principais hashes identificados foram:
+
+- **MD5:** `b4157a9f819a9aeb401a4b7784f7916e`
+- **SHA-1:** `fe384a3c1cfa7727f7f07227e5556ae716a55a217`
+- **SHA-256:** `8cd4a12cf21a4e1f9bf2da069be51b52c777328ae6ed87ce29b495412773cd72`
+
+Esses hashes podem ser utilizados como indicadores de comprometimento para buscas em ferramentas como SIEM, EDR e soluções de Threat Intelligence.
