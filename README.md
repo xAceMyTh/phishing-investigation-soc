@@ -213,3 +213,28 @@ A máquina da vítima acessou o link de phishing, iniciando a sequência de requ
 **Tática:** Command and Control
 
 Durante a análise do tráfego foi identificada a transferência do arquivo `doc172_pdf.zip` de um servidor externo para a máquina interna.
+
+## Conclusão da investigação
+
+A investigação revelou que o incidente envolveu e-mails de phishing com remetente spoofed e links que direcionavam a vítima para infraestrutura maliciosa.
+
+Durante a análise do tráfego de rede no PCAP, foi identificado que o host interno `172.16.120.154` acessou o domínio `art4yogis.com` através do caminho `/NATWEST_RELEASES/bankline.html`.
+
+A partir desse acesso, foram observadas comunicações com outros domínios, como `y-design.promagnumcorp.com` e `tls.ro`. Também foi identificada a transferência do arquivo `doc172_pdf.zip`, associado ao executável `doc255_pdf.exe`.
+
+O hash do executável foi consultado no VirusTotal, onde apresentou alta taxa de detecção e foi classificado principalmente como Trojan/Downloader, associado à família Upatre.
+
+Com base nas evidências coletadas, o incidente foi classificado como **Phishing — True Positive**, com entrega de malware.
+
+## Ações recomendadas
+
+Caso esse incidente ocorresse em um ambiente corporativo, algumas ações seriam recomendadas:
+
+- Isolar o host afetado da rede para evitar possível propagação ou novas comunicações maliciosas.
+- Bloquear os domínios e endereços IP identificados durante a investigação.
+- Adicionar os hashes do arquivo malicioso às ferramentas de segurança da organização.
+- Realizar uma varredura completa no endpoint utilizando EDR ou antivírus.
+- Pesquisar os IOCs identificados em outros hosts da rede através do SIEM, EDR, proxy, DNS e firewall.
+- Verificar se outros usuários receberam mensagens semelhantes.
+- Redefinir as credenciais do usuário caso exista suspeita de comprometimento.
+- Reforçar ações de conscientização sobre phishing e engenharia social.
