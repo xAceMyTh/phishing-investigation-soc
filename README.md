@@ -22,6 +22,28 @@ Os dados utilizados neste projeto foram obtidos a partir de um exercício dispon
 
 A análise foi realizada de forma defensiva, sem execução das amostras maliciosas.
 
+## Fluxo do incidente
+
+A sequência observada durante a investigação foi:
+
+```
+E-mail de phishing
+        ↓
+art4yogis.com
+        ↓
+/NATWEST_RELEASES/bankline.html
+        ↓
+y-design.promagnumcorp.com / tls.ro
+        ↓
+doc172_pdf.zip
+        ↓
+doc255_pdf.exe
+        ↓
+Upatre
+```
+
+Esse fluxo resume a sequência identificada durante a análise, desde o acesso ao link de phishing até a entrega do arquivo malicioso.
+
 ## Análise inicial do phishing
 
 A primeira etapa da investigação foi analisar os dados relacionados aos e-mails enviados durante o incidente.
