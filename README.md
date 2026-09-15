@@ -161,3 +161,36 @@ Na resposta foi identificado um trecho de JavaScript responsável por criar um n
 Entre os elementos observados estavam um novo caminho contendo `get_message` e a execução automática do elemento `downloadLink`.
 
 Esse comportamento ajudou a reconstruir a sequência de redirecionamentos utilizada para conduzir a vítima até a entrega do arquivo malicioso.
+
+## Indicadores de comprometimento (IOCs)
+
+Durante a investigação foram identificados diversos indicadores relacionados ao incidente.
+
+### Endereços IP
+
+- `172.16.120.154` — host interno observado no PCAP
+- `64.29.151.221` — servidor associado a `art4yogis.com`
+- `69.89.27.218` — servidor associado a `y-design.promagnumcorp.com`
+- `86.35.15.212` — servidor associado a `tls.ro`
+- `62.149.177.11` — IP associado ao domínio `waveonnord.com`
+- `2.110.26.249` — IP de envio analisado durante o enriquecimento
+
+### Domínios
+
+- `art4yogis.com`
+- `y-design.promagnumcorp.com`
+- `tls.ro`
+- `waveonnord.com`
+
+### Arquivos
+
+- `doc172_pdf.zip`
+- `doc255_pdf.exe`
+
+### Hashes do malware
+
+- **MD5:** `b4157a9f819a9aeb401a4b7784f7916e`
+- **SHA-1:** `fe384a3c1cfa7727f7f07227e5556ae716a55a217`
+- **SHA-256:** `8cd4a12cf21a4e1f9bf2da069be51b52c777328ae6ed87ce29b495412773cd72`
+
+A lista completa de indicadores pode ser consultada no arquivo [`iocs/iocs.txt`](iocs/iocs.txt).
