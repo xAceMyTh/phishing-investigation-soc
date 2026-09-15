@@ -101,3 +101,63 @@ Os principais hashes identificados foram:
 - **SHA-256:** `8cd4a12cf21a4e1f9bf2da069be51b52c777328ae6ed87ce29b495412773cd72`
 
 Esses hashes podem ser utilizados como indicadores de comprometimento para buscas em ferramentas como SIEM, EDR e soluções de Threat Intelligence.
+
+## Análise do tráfego de rede
+
+Após o enriquecimento dos indicadores, foi realizada a análise da captura PCAP no Wireshark para identificar o comportamento da máquina envolvida no incidente.
+
+Durante a investigação foi identificado que o host interno `172.16.120.154` realizou uma requisição HTTP para o domínio `art4yogis.com`.
+
+![Acesso ao domínio de phishing](evidence/evidence-08-phishing-http-request.png)
+
+A requisição observada foi:
+
+`GET /NATWEST_RELEASES/bankline.html HTTP/1.1`
+
+O tráfego mostrou a comunicação entre:
+
+- **Host interno:** `172.16.120.154`
+- **Servidor externo:** `64.29.151.221`
+- **Domínio:** `art4yogis.com`
+
+As requisições posteriores permitiram acompanhar a sequência de comunicação iniciada após o acesso à página de phishing.
+
+### Entrega do arquivo malicioso
+
+Durante a análise das requisições HTTP posteriores, foi identificada uma comunicação com o domínio `y-design.promagnumcorp.com`.
+
+A resposta do servidor apresentou o código `HTTP/1.1 200 OK` e o seguinte cabeçalho:
+
+`Content-Disposition: attachment; filename=doc172_pdf.zip`
+
+![Download do arquivo malicioso](evidence/evidence-09-malicious-file-download.png)
+
+O tráfego indicou que o servidor externo entregou o arquivo `doc172_pdf.zip` para a máquina interna.
+
+Também foi observado que a requisição utilizava como referência a página:
+
+`http://art4yogis.com/NATWEST_RELEASES/bankline.html`
+
+Isso permitiu relacionar o acesso inicial ao domínio de phishing com a etapa de entrega do arquivo.
+
+### Redirecionamento e JavaScript observado
+
+Durante a análise das comunicações posteriores, também foi identificado tráfego envolvendo o domínio `tls.ro`.
+
+A requisição utilizava como referência a página de phishing acessada anteriormente:
+
+`http://art4yogis.com/NATWEST_RELEASES/bankline.html`
+
+![Requisição HTTP para tls.ro](evidence/evidence-10a-http-request-response.png)
+
+O servidor respondeu com `HTTP/1.1 200 OK` e conteúdo do tipo:
+
+`Content-Type: application/javascript`
+
+Na resposta foi identificado um trecho de JavaScript responsável por criar um novo link de download e acioná-lo automaticamente.
+
+![JavaScript de redirecionamento](evidence/evidence-10b-javascript-autodownload.png)
+
+Entre os elementos observados estavam um novo caminho contendo `get_message` e a execução automática do elemento `downloadLink`.
+
+Esse comportamento ajudou a reconstruir a sequência de redirecionamentos utilizada para conduzir a vítima até a entrega do arquivo malicioso.
