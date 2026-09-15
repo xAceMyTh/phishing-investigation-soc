@@ -194,3 +194,22 @@ Durante a investigação foram identificados diversos indicadores relacionados a
 - **SHA-256:** `8cd4a12cf21a4e1f9bf2da069be51b52c777328ae6ed87ce29b495412773cd72`
 
 A lista completa de indicadores pode ser consultada no arquivo [`iocs/iocs.txt`](iocs/iocs.txt).
+
+## Mapeamento MITRE ATT&CK
+
+Com base nas evidências observadas durante a investigação, algumas técnicas do framework MITRE ATT&CK foram relacionadas ao incidente.
+
+### T1566.002 - Phishing: Spearphishing Link
+**Tática:** Initial Access
+
+O incidente utilizou mensagens de phishing contendo links que direcionavam a vítima para infraestrutura maliciosa.
+
+### T1204.001 - User Execution: Malicious Link
+**Tática:** Execution
+
+A máquina da vítima acessou o link de phishing, iniciando a sequência de requisições HTTP observada no PCAP.
+
+### T1105 - Ingress Tool Transfer
+**Tática:** Command and Control
+
+Durante a análise do tráfego foi identificada a transferência do arquivo `doc172_pdf.zip` de um servidor externo para a máquina interna.
