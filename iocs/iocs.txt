@@ -1,0 +1,66 @@
+Phishing Campaign IOCs
+
+=== Campaign Information ===
+
+[Sender - Spoofed]
+bankline.administrator@nutwest.com
+
+[Campaign Domain]
+waveonnord.com
+
+[Campaign Domain IP]
+62.149.177.11
+
+[Sending IP Investigated]
+2.110.26.249
+
+
+=== Observed in PCAP ===
+
+[Victim IP - Internal]
+172.16.120.154
+
+[Phishing Domain]
+art4yogis.com
+
+[Phishing Server IP]
+64.29.151.221
+
+[Phishing Path]
+/NATWEST_RELEASES/bankline.html
+
+[Download Domain]
+y-design.promagnumcorp.com
+
+[Download Server IP]
+69.89.27.218
+
+[Malicious Download Path]
+/js/jquery-1.39.15.js?get_message=618769682
+
+[Secondary Download Domain]
+tls.ro
+
+[Secondary Download Server IP]
+86.35.15.212
+
+[Secondary Download Path]
+/js/jquery-1.39.15.js?get_message=139317664
+
+[Downloaded File]
+doc172_pdf.zip
+
+
+=== Malware ===
+
+[Malware]
+doc255_pdf.exe
+
+[MD5]
+b4157a9f819a9aeb401a4b7784f7916e
+
+[SHA-1]
+fe384a3c1cfa7727f7f07227e5556ae716a55a217
+
+[SHA-256]
+8cd4a12cf21a4e1f9bf2da069be51b52c777328ae6ed87ce29b495412773cd72
